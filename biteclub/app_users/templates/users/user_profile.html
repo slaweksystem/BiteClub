@@ -4,6 +4,15 @@
 {% endblock %}
 
 {% block content %}
-    <h2>User Info</h2>
-    <p>Here you can check and edit your user settings</p>
+    <div>
+        <h1>Welcome, {{ user.username }}</h1>
+        <div class="profile-data">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        </div>
+        <a href="{% url 'users:change_password' %}" class="btn">Change Password</a>
+        <a href="{% url 'users:edit_profile' %}" class="btn">Change Data</a>
+    </div>
 {% endblock %}

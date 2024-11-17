@@ -4,19 +4,27 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User, Group
-from .forms import CustomUserCreationForm
+from .forms import *
 
+from django.contrib import messages
+
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 # Create your views here.
-
+@login_required(login_url='users:login')
 def change_password_view(request: HttpRequest):
     if request.method == "POST":
-        form = PasswordChangeForm(data = request.POST)
+        form = PasswordChangeForm(user = request.user, data = request.POST)
+        user = request.user
         if form.is_valid():
-            login(request, form.get_user())
-            return redirect("users:list")
+            form.save()
+            return redirect("users:user_profile")
     else:
-        form = PasswordChangeForm()
+        form = PasswordChangeForm(user = request.user)
     return render(request, 'users/change_password.html', {"form": form}) 
 
 def register_view(request: HttpRequest):
@@ -53,5 +61,22 @@ def logout_view(request: HttpRequest):
         return render(request, 'users/logout.html')
     return HttpResponseNotAllowed(["POST"])
 
+@login_required(login_url='users:login')
 def user_profile_view(request: HttpRequest):
     return render(request, 'users/user_profile.html')
+
+@login_required
+def edit_profile_view(request: HttpRequest):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile has been updated successfully.')
+            return redirect('users:user_profile')  # Redirect to the profile page or another page
+    else:
+        form = UserEditForm(instance=request.user)
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'users/edit_profile.html', context)

@@ -5,6 +5,10 @@
 
 {% block content %}
     <h2>{{ restaurant.name }}</h2>
+    {% if is_owner %}
+    <a href="{% url 'restaurants:new-menu-item' id_restaurant=restaurant.id %}" class ="btn">New-Item</a>
+    <a href="{% url 'restaurants:edit-restaurant' id_restaurant=restaurant.id %}" class ="btn">Edit Restaurant</a>
+    {% endif %}
     <div style="display: flex; flex-direction: column; height: 90%; overflow-y: hidden;" >
         <div style="flex-grow: 1; width: 95%; overflow: auto;">
             <table>
@@ -26,9 +30,6 @@
                 </tr>
                 {% endfor %}
             </table>
-            {% if is_owner %}
-            <a href="{% url 'restaurants:new-menu-item' id_restaurant=restaurant.id %}">New-Item</a>
-            {% endif %}
         </div>
     </div>
 {% endblock %}

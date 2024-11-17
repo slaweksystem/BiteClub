@@ -5,6 +5,9 @@
 
 {% block content %}
     <h2>Restaurants</h2>
+    {% if is_manager %}
+    <a href="{% url 'app_restaurants:new-restaurant' %}" class="btn">Add Restaurant</a>
+    {% endif %}
     <div style="display: flex; flex-direction: column; height: 90%; overflow-y: hidden;" >
         <div style="flex-grow: 1; width: 95%; overflow: auto;">
             <table>
@@ -12,6 +15,7 @@
                     <th>Logo</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th></th>
                 </tr>
                 {% for restaurant in restaurants %}
                 <tr>
@@ -21,12 +25,12 @@
                         </a>
                     </td>
                     <td>{{ restaurant.description }}</td>
+                    <td> <a href="{% url 'restaurants:restuarant' id_restaurant=restaurant.id %}" class = btn>
+                        View Menu
+                        </a>
                 </tr>
                 {% endfor %}
             </table>
-            {% if is_manager %}
-            <a href="{% url 'app_restaurants:new-restaurant' %}">Add Restaurant</a>
-            {% endif %}
         </div>
     </div>
 {% endblock %}

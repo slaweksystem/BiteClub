@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Edit Restaurant
+{% endblock %}
+
+{% block content %}
+<h2>Edit Restaurant: {{ restaurant.name }}</h2>
+    <div class="scrollable-form-container">
+        <div class="scrollable-content">
+            <form method="post" enctype="multipart/form-data" class="scrollable-form-container">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class= "btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <button type="submit" class= "btn">Save Changes</button>
+    <a href="{% url 'app_restaurants:restuarant' id_restaurant=restaurant.id %}" class="btn">Cancel</a>
+{% endblock %}
