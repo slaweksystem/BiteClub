@@ -1,0 +1,3 @@
+*.pyc
+.pyenv/*
+biteclub/db.sqlite3

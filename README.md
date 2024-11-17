@@ -1,2 +1,2 @@
 # BiteClub
-Django application for ordering food
+Django application for ordering food.

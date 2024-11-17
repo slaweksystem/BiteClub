@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Restaurants
+{% endblock %}
+
+{% block content %}
+    <h2>Restaurants</h2>
+    <div style="display: flex; flex-direction: column; height: 90%; overflow-y: hidden;" >
+        <div style="flex-grow: 1; width: 95%; overflow: auto;">
+            <table>
+                <tr>
+                    <th>Logo</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                {% for restaurant in restaurants %}
+                <tr>
+                    <td><img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}" style="width:300px;height:auto;"></td>
+                    <td> <a href="{% url 'app_restaurants:restuarant' id_restaurant=restaurant.id %}">
+                        {{ restaurant.name }}
+                        </a>
+                    </td>
+                    <td>{{ restaurant.description }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% if is_manager %}
+            <a href="{% url 'app_restaurants:new-restaurant' %}">Add Restaurant</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

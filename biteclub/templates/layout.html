@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Django App
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <ul>
+        <div>
+            <li><a class="{% if request.path == '/home/' %}active{% endif %}" href="/home">🏠<br><p>Home</p></a></li>
+        </div>
+        <div>
+            <li><a class="{% if request.path == '/dinner-sessions/' %}active{% endif %}" href="/dinner-sessions">🥗<br><p>Dinner Sessions</p></a></li>
+        </div>
+        <div>
+            <li><a class="{% if request.resolver_match.namespace == 'restaurants' %}active{% endif %}" href="/restaurants">⛩<br><p>Restaurants</p></a></li>
+        </div>
+        {% if user.is_authenticated %}
+        <div>
+            <li>
+                <a class="{% if request.resolver_match.url_name == 'user_profile' %}active{% endif %}" 
+                    href="{% url 'app_users:user_profile' %}">⚙<br>
+                        <p>User Profile</p>
+                </a>
+            </li>
+        </div>
+        <div>
+            <li> 
+                <form class="logout" action="{% url 'users:logout' %}"
+                method="post">
+                    {% csrf_token %}
+                    <button class="logout-button" aria-label="User Logout"
+                    title="User Logout">👋</button>
+                    <p>Logout</p>
+                </form>
+        </div>
+        {% else %}
+        <div>
+            <li>
+                <a class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                href="{% url 'app_users:login' %}">🔐<br>
+                    <p>Login</p>
+                </a>
+            </li>
+        </div>
+        <div>
+            <li><a class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}" 
+                href="{% url 'app_users:register' %}">🚀<br>
+                    <p>Register</p>
+                </a>
+            </li>
+        </div>
+        {% endif %}
+    </ul>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
