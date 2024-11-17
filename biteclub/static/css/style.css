@@ -26,11 +26,11 @@ main {
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 p {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 ul {
@@ -54,13 +54,12 @@ ul {
     text-align: center;
     padding: 10px 12px;
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   li p {
-    font-size: 1.5rem
+    font-size: 1rem
   }
-
 
   li a:hover:not(.active) {
     background-color: #102b0b;
@@ -136,7 +135,7 @@ ul {
 }
 
 .logout-button {
-  font-size: 2.5rem;
+  font-size: 2rem;
   background-color: rgb(0, 0, 0, 0);
   border: none;
 }
@@ -158,4 +157,153 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #444444;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  background: #032905;
+  border-radius: 5px;
+  text-align: center;
+  transition: background 0.3s ease; 
+}
+.btn:hover {
+  background: #021402;
+}
+
+.form-password-change {
+  max-width: 400px;
+  margin: 50px auto; /* Center the form on the page */
+  background: #06520a; /* White background */
+  padding: 20px; /* Add padding inside the form */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: Arial, sans-serif; /* Clean font */
+}
+
+.form-password-change label {
+  display: block; /* Ensure labels take a full line */
+  font-size: 14px; /* Smaller font for labels */
+  margin-bottom: 5px; /* Space between label and input */
+  color: #ffffff; /* Dark gray text for contrast */
+}
+
+.form-password-change input {
+  width: 100%; /* Full-width input fields */
+  padding: 10px; /* Space inside the input */
+  margin-bottom: 15px; /* Space between inputs */
+  font-size: 14px; /* Match label font size */
+  border: 1px solid #cccccc; /* Light gray border */
+  border-radius: 5px; /* Slightly rounded input fields */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+
+
+.form-password-change button {
+  width: 100%; /* Full-width button */
+  padding: 10px; /* Space inside button */
+  font-size: 16px; /* Slightly larger font for emphasis */
+  color: #ffffff; /* White text */
+  background: #032905;
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.3s ease; /* Smooth background change on hover */
+}
+
+.form-password-change button:hover {
+  background: #021402; /* Darker blue on hover */
+}
+
+.form-password-change .errorlist {
+  color: #d9534f; /* Red color for error messages */
+  margin-bottom: 10px; /* Space below error messages */
+  font-size: 13px; /* Slightly smaller font for errors */
+}
+
+
+.scrollable-form-container {
+  max-width: 600px;
+  margin: 50px auto; /* Center the form */
+  background: #06520a;
+  padding: 20px; /* Padding inside the container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: Arial, sans-serif; /* Clean font */
+  overflow: hidden; /* Prevent overflowing content */
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollable-form-container h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.scrollable-content {
+  max-height: 300px; /* Limit the height of the scrollable area */
+  overflow-y: auto; /* Add vertical scrolling */
+  padding-right: 10px; /* Spacing for scroll bar visibility */
+}
+
+.scrollable-form-container label {
+  display: block; /* Ensure labels take up a full line */
+  font-size: 14px; /* Smaller font for labels */
+  margin-bottom: 5px; /* Space between label and input */
+  color: #ffffff;
+}
+
+.scrollable-form-container input,
+.scrollable-form-container textarea,
+.scrollable-form-container select {
+  width: 100%; /* Full-width fields */
+  padding: 10px; /* Space inside input fields */
+  margin-bottom: 15px; /* Space between inputs */
+  font-size: 14px; /* Input font size */
+  border: 1px solid #cccccc; /* Light gray border */
+  border-radius: 5px; /* Slightly rounded corners */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.scrollable-form-container input:focus,
+.scrollable-form-container textarea:focus,
+.scrollable-form-container select:focus {
+  border-color: #007bff; /* Highlighted border on focus */
+  outline: none; /* Remove default browser outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle blue glow */
+}
+
+.scrollable-form-container button {
+  width: 100%; /* Full-width button */
+  padding: 10px; /* Space inside button */
+  font-size: 16px; /* Slightly larger font */
+  color: #ffffff; /* White text */
+  background: #032905; /* Primary blue background */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.3s ease; /* Smooth hover transition */
+}
+
+.scrollable-form-container button:hover {
+  background: #021402; /* Darker blue on hover */
+}
+
+.scrollable-form-container .errorlist {
+  color: #d9534f; /* Red text for error messages */
+  font-size: 13px; /* Slightly smaller text for errors */
+  margin-bottom: 10px; /* Space below error messages */
+}
+
+.scrollable-form-container .form-footer {
+  margin-top: 15px; /* Space above footer */
+  text-align: center; /* Center-align footer text */
+  font-size: 13px; /* Smaller font size */
+  color: #777777; /* Subtle gray for footer */
 }
