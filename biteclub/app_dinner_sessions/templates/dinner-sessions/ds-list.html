@@ -1,8 +1,32 @@
 {% extends 'layout.html' %}
 {% block title %}
-    Home
+    Dinner Sessions
 {% endblock %}
 
 {% block content %}
-    <p>Hello</p>
+    <h2>Dinner Sessions</h2>
+    <div style="display: flex; flex-direction: column; height: 90%; overflow-y: hidden;" >
+        <div style="flex-grow: 1; width: 95%; overflow: auto;">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Owner</th>
+                    <th>Active</th>
+                </tr>
+                {% for session in sessions %}
+                <tr>
+                    <td> <a href="{% url 'app_dinner_sessions:session' id_sesison=session.id %}">
+                        {{ session.name }}
+                        </a>
+                    </td>
+                    <td>{{ session.onwer}}</td>
+                    <td> <a href="{% url 'sessions:session' id_restaurant=restaurant.id %}" class = btn>
+                        View Menu
+                        </a>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 {% endblock %}

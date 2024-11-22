@@ -62,6 +62,6 @@ class EditRestaurant(forms.ModelForm):
 
 class CreateMenuItem(forms.ModelForm):
     class Meta:
-        model = models.Menu_Item
+        model = models.MenuItem
         fields = ['name', 'description', 'price', 'photo']
 

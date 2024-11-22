@@ -14,7 +14,7 @@ class Restaurant(models.Model):
     def __str__(self):
         return self.name
     
-class Menu_Item(models.Model):
+class MenuItem(models.Model):
     name = models.CharField(max_length=75, unique=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)

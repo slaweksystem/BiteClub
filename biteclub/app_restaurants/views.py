@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
-from .models import Restaurant, Menu_Item
+from .models import Restaurant, MenuItem
 from . import forms
 
 # Create your views here.
@@ -25,7 +25,7 @@ def restaurant_page(request: HttpRequest, id_restaurant: int):
         is_owner = True
     else:
         is_owner = False
-    items = Menu_Item.objects.filter(restaurant=restaurant)
+    items = MenuItem.objects.filter(restaurant=restaurant)
     return render(request, 'restaurants/restaurant_page.html',
                   {'restaurant': restaurant, 'items': items, 'is_owner': is_owner})
 
@@ -84,6 +84,9 @@ def restaurant_new_menu_item(request: HttpRequest, id_restaurant: int):
 @login_required(login_url="/users/login/")
 def restaurant_edit(request: HttpRequest, id_restaurant: int):
     restaurant = get_object_or_404(Restaurant, id=id_restaurant)
+    if restaurant.owner != request.user:
+        return redirect('forbidden')
+
     if request.method == 'POST':
         form = forms.EditRestaurant(request.POST, request.FILES, instance=restaurant)
         if form.is_valid():
